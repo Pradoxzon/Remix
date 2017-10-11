@@ -62,6 +62,7 @@ BOOL CRemixApp::InitInstance()
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinApp::InitInstance();
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
 
 	// Initialize OLE libraries
@@ -112,6 +113,7 @@ BOOL CRemixApp::InitInstance()
 int CRemixApp::ExitInstance()
 {
 	//TODO: handle additional resources you may have added
+	Gdiplus::GdiplusShutdown(gdiplusToken);
 	AfxOleTerm(FALSE);
 
 	return CWinApp::ExitInstance();
