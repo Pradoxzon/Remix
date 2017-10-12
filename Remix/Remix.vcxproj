@@ -182,7 +182,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arrow.h" />
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="Display.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Remix.h" />
@@ -191,7 +193,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="Display.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Remix.cpp" />
     <ClCompile Include="stdafx.cpp">
