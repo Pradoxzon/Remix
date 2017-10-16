@@ -11,6 +11,8 @@
 #include <string>
 #include <memory>
 
+#include "BaseImage.h"
+
 // Forward declaration
 class CDisplay;
 
@@ -18,7 +20,7 @@ class CDisplay;
 /**
  * The Arrow class
  */
-class CArrow
+class CArrow : public CBaseImage
 {
 public:
 	/// The possible arrow directions
@@ -34,7 +36,7 @@ public:
 	/// Default copy constructor (disabled)
 	CArrow(const CArrow &) = delete;
 
-	CArrow(CDisplay *city, Direction direction);
+	CArrow(CDisplay *display, Direction direction);
 
 	~CArrow();
 
@@ -48,10 +50,6 @@ public:
 private:
 	/// Determine whether the arrow is clickable or not
 	bool mEnabled;
-
-	// The arrow's location
-	int mX = 0;		///< X location for the center of the arrow
-	int mY = 0;		///< Y location for the center of the arrow
 
 	std::unique_ptr<Gdiplus::Bitmap> mArrowImage;
 };

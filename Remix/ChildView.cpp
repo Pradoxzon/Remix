@@ -12,6 +12,10 @@
 #endif
 
 
+using namespace std;
+using namespace Gdiplus;
+
+
 // CChildView
 
 CChildView::CChildView()
@@ -45,10 +49,20 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	return TRUE;
 }
 
+/**
+ * This function is called to draw in the window.
+ *
+ * This function is called in response to a drawing message
+ * whenever we need to redraw the window on the screen.
+ * It is responsible for painting the window.
+ */
 void CChildView::OnPaint() 
 {
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
+
+	Graphics graphics(dc.m_hDC);
+	graphics.Clear(Color(0, 0, 0));
 }
 
 
