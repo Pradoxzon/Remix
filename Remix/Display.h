@@ -29,9 +29,32 @@ public:
 	virtual ~CDisplay();
 
 
-	void OnDraw(Gdiplus::Graphics *graphics);
+	void Update(std::shared_ptr<CArrow> arrow);
+
+	void OnDraw(Gdiplus::Graphics *graphics, int width, int height);
+
+	std::shared_ptr<CArrow> HitTest(int x, int y);
+
+
+	/**
+	 * Change x-coordinate to virtual coordinates
+	 * \param x The coordinate to be transformed
+	 * \return double The transformed coordinate
+	 */
+	double xAxisTransform(double x) { return static_cast<int>((x - mXOffset) / mScale); }
+
+	/**
+	 * Change y-coordinate to virtual coordinates
+	 * \param y The coordinate to be transformed
+	 * \return double The transformed coordinate
+	 */
+	double yAxisTransform(double y) { return static_cast<int>((y - mYOffset) / mScale); }
 
 private:
+	float mScale;		///< Value to help scale screen
+	float mXOffset;		///< Value to set center x value to be middle of screen
+	float mYOffset;		///< Value to set center y value to be middle of screen
+
 	/**
 	 * The arrows used to change the screen.
 	 * Order in the vector: 

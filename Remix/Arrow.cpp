@@ -33,19 +33,27 @@ CArrow::CArrow(CDisplay *display, Direction direction) : CBaseImage(display)
 {
 	if (direction == UP)
 	{
+		mDirection = direction;
 		SetImage(UpArrow);
+		SetLocation(0, -200);
 	}
 	else if (direction == DOWN)
 	{
+		mDirection = direction;
 		SetImage(DownArrow);
+		SetLocation(0, 200);
 	}
 	else if (direction == RIGHT)
 	{
+		mDirection = direction;
 		SetImage(RightArrow);
+		SetLocation(200, 0);
 	}
 	else
 	{
+		mDirection = direction;
 		SetImage(LeftArrow);
+		SetLocation(-200, 0);
 	}
 }
 

@@ -35,6 +35,11 @@ public:
 	virtual ~CBaseImage();
 
 
+	int GetX() { return mX; }
+
+	int GetY() { return mY; }
+
+
 	void SetImage(const std::wstring &file);
 
 	/**  Draw this item
@@ -47,6 +52,8 @@ public:
 	 * \param newY The new y-coordinate of the image's center
 	 */
 	void SetLocation(int newX, int newY) { mX = newX; mY = newY; }
+
+	bool HitTest(double x, double y);
 
 protected:
 	CBaseImage(CDisplay *display);

@@ -47,9 +47,18 @@ public:
 	/// Disable the Arrow
 	void Disable() { mEnabled = false; }
 
+	/// Check if the arrow is enabled
+	bool IsEnabled() { return mEnabled; }
+
+	/// Get the arrow's direction
+	Direction GetDirect() { return mDirection; }
+
 private:
 	/// Determine whether the arrow is clickable or not
 	bool mEnabled;
+
+	/// The arrow's direction
+	Direction mDirection;
 
 	std::unique_ptr<Gdiplus::Bitmap> mArrowImage;
 };

@@ -69,8 +69,36 @@ void CBaseImage::Draw(Gdiplus::Graphics *graphics)
 		int hit = mImage->GetHeight();
 
 		graphics->DrawImage(mImage.get(),
-			mX, mY - hit,
-			wid, hit);
+			float(GetX() - wid / 2), float(GetY() - hit / 2),
+			(float)mImage->GetWidth(), (float)mImage->GetHeight());
 	}
 
+}
+
+
+/**
+* Test to see if we hit this object with a mouse.
+* \param x X position to test
+* \param y Y position to test
+* \return true if hit.
+*/
+bool CBaseImage::HitTest(double x, double y)
+{
+	double wid = mImage->GetWidth();
+	double hit = mImage->GetHeight();
+
+	// Make x and y relative to the top-left corner of the bitmap image
+	// Subtracting the center makes x, y relative to the image center
+	// Adding half the size makes x, y relative to theimage top corner
+	double testX = x - GetX() + wid / 2;
+	double testY = y - GetY() + hit / 2;
+
+	// Test to see if x, y are in the image
+	if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+	{
+		// We are outside the image
+		return false;
+	}
+
+	return true;
 }

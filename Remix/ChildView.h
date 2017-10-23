@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "Display.h"
+
 
 // CChildView window
 
@@ -32,7 +34,17 @@ public:
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	/// The display
+	CDisplay mDisplay;
+
+	/// The arrow being clicked
+	std::shared_ptr<CArrow> mClickedArrow;
+
 public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
 
