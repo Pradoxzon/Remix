@@ -15,7 +15,7 @@
 
 
 /// Screen area width in virtual pixels
-const static int Width = 1400;
+const static int Width = 2000;
 
 /// Screen area height in virtual pixels
 const static int Height = 1100;
