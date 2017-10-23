@@ -24,6 +24,12 @@ const wstring RightArrow = L"rightArrow.png";
 /// Image of the left facing arrow
 const wstring LeftArrow = L"leftArrow.png";
 
+/// Screen area width in virtual pixels
+const static int Width = 2000;
+
+/// Screen area height in virtual pixels
+const static int Height = 1100;
+
 /**
  * Constructor
  * \param display The display that this arrow appears on
@@ -35,25 +41,25 @@ CArrow::CArrow(CDisplay *display, Direction direction) : CBaseImage(display)
 	{
 		mDirection = direction;
 		SetImage(UpArrow);
-		SetLocation(0, -200);
+		SetLocation(0, -(Height / 2) + 50);
 	}
 	else if (direction == DOWN)
 	{
 		mDirection = direction;
 		SetImage(DownArrow);
-		SetLocation(0, 200);
+		SetLocation(0, (Height / 2) - 50);
 	}
 	else if (direction == RIGHT)
 	{
 		mDirection = direction;
 		SetImage(RightArrow);
-		SetLocation(200, 0);
+		SetLocation((Width / 2) - 50, 0);
 	}
 	else
 	{
 		mDirection = direction;
 		SetImage(LeftArrow);
-		SetLocation(-200, 0);
+		SetLocation(-(Width / 2) + 50, 0);
 	}
 }
 
