@@ -62,6 +62,14 @@ void CDisplay::Update(double elapsed)
 {
 	mElapsed += elapsed;
 
+	if (mElapsed <= 1.5)	// Rotate the cube halfway
+	{
+		mBackground->StartTransition(CCubeBackground::CubeColor::BLUE);
+	}
+	else					// Finish rotating the cube
+	{
+		mBackground->EndTransition();
+	}
 	if (mElapsed >= 3)	// Tansition is finished
 	{
 		for (auto arrow : mArrows)
