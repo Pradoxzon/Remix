@@ -27,6 +27,8 @@ CDisplay::CDisplay()
 	mArrows.push_back(down);
 	mArrows.push_back(left);
 	mArrows.push_back(right);
+
+	mBackground = make_shared<CCubeBackground>(this);
 }
 
 
@@ -94,6 +96,9 @@ void CDisplay::OnDraw(Graphics *graphics, int width, int height, double elapsed)
 	{
 		Update(elapsed);
 	}
+
+	// Draw the background cube
+	mBackground->Draw(graphics);
 
 	// Draw the arrows
 	for (auto arrow : mArrows)
