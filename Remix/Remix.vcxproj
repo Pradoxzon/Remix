@@ -184,24 +184,26 @@
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="BaseImage.h" />
-    <ClInclude Include="CCubeBackground.h" />
+    <ClInclude Include="CubeBackground.h" />
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Remix.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="BaseImage.cpp" />
-    <ClCompile Include="CCubeBackground.cpp" />
+    <ClCompile Include="CubeBackground.cpp" />
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Remix.cpp" />
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

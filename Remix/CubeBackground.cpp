@@ -1,12 +1,12 @@
 /**
- * \file CCubeBackground.cpp
+ * \file CubeBackground.cpp
  *
  * \author Shawn Peerenboom
  */
 
 #include "stdafx.h"
 
-#include "CCubeBackground.h"
+#include "CubeBackground.h"
 
 
 /**

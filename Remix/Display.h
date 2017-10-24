@@ -12,7 +12,7 @@
 #include <memory>
 
 #include "Arrow.h"
-#include "CCubeBackground.h"
+#include "CubeBackground.h"
 
 
 /// Screen area width in virtual pixels

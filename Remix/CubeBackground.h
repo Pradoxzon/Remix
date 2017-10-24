@@ -1,5 +1,5 @@
 /**
- * \file CCubeBackground.h
+ * \file CubeBackground.h
  *
  * \author Shawn Peerenboom
  *

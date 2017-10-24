@@ -48,7 +48,10 @@
     <ClInclude Include="BaseImage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCubeBackground.h">
+    <ClInclude Include="Screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeBackground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +77,10 @@
     <ClCompile Include="BaseImage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CCubeBackground.cpp">
+    <ClCompile Include="Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeBackground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
