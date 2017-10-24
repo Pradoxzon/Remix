@@ -34,8 +34,21 @@ CScreenCollection::CScreenCollection(CDisplay *display)
 	vector<shared_ptr<CScreen>> toyVector = { aboutScreen, speedScreed, cubismScreen, movieScreen };
 	vector<shared_ptr<CScreen>> movieVector = { nullptr, toyScreen, aboutScreen, nullptr };
 	vector<shared_ptr<CScreen>> cubismVector = { nullptr, nullptr, nullptr, toyScreen };
+	vector<shared_ptr<CScreen>> nerdsVector = { solveScreen, aboutScreen, speedScreed, celebScreen };
+	vector<shared_ptr<CScreen>> speedVector = { toyScreen, nullptr, nullptr, nerdsScreen };
+	vector<shared_ptr<CScreen>> celebVector = { nullptr, nullptr, nerdsScreen, nullptr };
+	vector<shared_ptr<CScreen>> solveVector = { nullptr, nerdsScreen, nullptr, nullptr };
 
 	// Add the screens to the map
+	mScreenCollection = { {aboutScreen, aboutVector}, 
+						  {originScreen, originVector},
+						  {toyScreen, toyVector},
+						  {movieScreen, movieVector},
+						  {cubismScreen, cubismVector},
+						  {nerdsScreen, nerdsVector},
+						  {speedScreed, speedVector}, 
+						  {celebScreen, celebVector},
+						  {solveScreen, solveVector} };
 
 }
 
