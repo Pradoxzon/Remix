@@ -184,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="BaseImage.h" />
+    <ClInclude Include="CCubeBackground.h" />
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="DoubleBufferDC.h" />
@@ -196,6 +197,7 @@
   <ItemGroup>
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="BaseImage.cpp" />
+    <ClCompile Include="CCubeBackground.cpp" />
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="MainFrm.cpp" />

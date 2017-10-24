@@ -29,9 +29,11 @@ public:
 	virtual ~CDisplay();
 
 
-	void Update(std::shared_ptr<CArrow> arrow);
+	void UpdateClicked(std::shared_ptr<CArrow> arrow);
 
-	void OnDraw(Gdiplus::Graphics *graphics, int width, int height);
+	void Update(double elapsed);
+
+	void OnDraw(Gdiplus::Graphics *graphics, int width, int height, double elapsed);
 
 	std::shared_ptr<CArrow> HitTest(int x, int y);
 
@@ -54,6 +56,9 @@ private:
 	float mScale;		///< Value to help scale screen
 	float mXOffset;		///< Value to set center x value to be middle of screen
 	float mYOffset;		///< Value to set center y value to be middle of screen
+
+	double mElapsed;				///< The time since an arrow was clicked
+	bool mTransitioning = false;	///< Indicate whether a transition is happening
 
 	/**
 	 * The arrows used to change the screen.

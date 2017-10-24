@@ -14,18 +14,26 @@ using namespace Gdiplus;
 
 /// Image of the upward facing arrow
 const wstring UpArrow = L"upArrow.png";
+/// Disabled version
+const wstring UpArrowDisabled = L"upArrowDisabled.png";
 
 /// Image of the downward facing arrow
 const wstring DownArrow = L"downArrow.png";
+/// Disabled version
+const wstring DownArrowDisabled = L"downArrowDisabled.png";
 
 /// Image of the right facing arrow
 const wstring RightArrow = L"rightArrow.png";
+/// Disabled version
+const wstring RightArrowDisabled = L"rightArrowDisabled.png";
 
 /// Image of the left facing arrow
 const wstring LeftArrow = L"leftArrow.png";
+/// Disabled version
+const wstring LeftArrowDisabled = L"leftArrowDisabled.png";
 
 /// Screen area width in virtual pixels
-const static int Width = 2000;
+const static int Width = 1800;
 
 /// Screen area height in virtual pixels
 const static int Height = 1100;
@@ -66,4 +74,47 @@ CArrow::CArrow(CDisplay *display, Direction direction) : CBaseImage(display)
 
 CArrow::~CArrow()
 {
+}
+
+
+void CArrow::Enable()
+{
+	mEnabled = true;
+	if (mDirection == UP)
+	{
+		SetImage(UpArrow);
+	}
+	else if (mDirection == DOWN)
+	{
+		SetImage(DownArrow);
+	}
+	else if (mDirection == RIGHT)
+	{
+		SetImage(RightArrow);
+	}
+	else
+	{
+		SetImage(LeftArrow);
+	}
+}
+
+void CArrow::Disable()
+{
+	mEnabled = false;
+	if (mDirection == UP)
+	{
+		SetImage(UpArrowDisabled);
+	}
+	else if (mDirection == DOWN)
+	{
+		SetImage(DownArrowDisabled);
+	}
+	else if (mDirection == RIGHT)
+	{
+		SetImage(RightArrowDisabled);
+	}
+	else
+	{
+		SetImage(LeftArrowDisabled);
+	}
 }

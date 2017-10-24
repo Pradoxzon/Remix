@@ -38,33 +38,41 @@ CDisplay::~CDisplay()
 }
 
 
-void CDisplay::Update(shared_ptr<CArrow> arrow)
+void CDisplay::UpdateClicked(shared_ptr<CArrow> arrow)
 {
 	if (arrow->IsEnabled())
 	{
-		CArrow::Direction direc = arrow->GetDirect();
-		if (direc == CArrow::Direction::UP)
+		// Reset the time elapsed
+		mElapsed = 0;
+
+		// Disabled all the arrows while animation happens
+		for (auto eachArrow : mArrows)
 		{
-			arrow->SetLocation(arrow->GetX(), arrow->GetY() + 50);
+			eachArrow->Disable();
 		}
-		else if (direc == CArrow::Direction::DOWN)
-		{
-			arrow->SetLocation(arrow->GetX(), arrow->GetY() - 50);
-		}
-		else if (direc == CArrow::Direction::LEFT)
-		{
-			arrow->SetLocation(arrow->GetX() + 50, arrow->GetY());
-		}
-		else
-		{
-			arrow->SetLocation(arrow->GetX() - 50, arrow->GetY());
-		}
-		arrow->Disable();
+
+		mTransitioning = true;
 	}
 }
 
 
-void CDisplay::OnDraw(Graphics *graphics, int width, int height)
+void CDisplay::Update(double elapsed)
+{
+	mElapsed += elapsed;
+
+	if (mElapsed >= 3)	// Tansition is finished
+	{
+		for (auto arrow : mArrows)
+		{
+			// Re-enable the arrows that need to be re-enabled
+			arrow->Enable();
+		}
+		mTransitioning = false;
+	}
+}
+
+
+void CDisplay::OnDraw(Graphics *graphics, int width, int height, double elapsed)
 {
 	// Fill background with white
 	SolidBrush brush(Color::White);
@@ -80,6 +88,12 @@ void CDisplay::OnDraw(Graphics *graphics, int width, int height)
 
 	graphics->TranslateTransform(mXOffset, mYOffset);
 	graphics->ScaleTransform(mScale, mScale);
+
+	// Update the display
+	if (mTransitioning)
+	{
+		Update(elapsed);
+	}
 
 	// Draw the arrows
 	for (auto arrow : mArrows)

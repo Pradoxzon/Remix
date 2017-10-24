@@ -42,10 +42,10 @@ public:
 
 
 	/// Enable the Arrow
-	void Enable() { mEnabled = true; }
+	void Enable();
 
 	/// Disable the Arrow
-	void Disable() { mEnabled = false; }
+	void Disable();
 
 	/// Check if the arrow is enabled
 	bool IsEnabled() { return mEnabled; }
