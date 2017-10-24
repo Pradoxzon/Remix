@@ -59,3 +59,52 @@ CScreenCollection::CScreenCollection(CDisplay *display)
 CScreenCollection::~CScreenCollection()
 {
 }
+
+
+void CScreenCollection::MoveUp(bool partial)
+{
+	if (partial)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+
+void CScreenCollection::MoveDown(bool partial)
+{
+	if (partial)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+
+void CScreenCollection::MoveRight(bool partial)
+{
+	if (partial)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+
+void CScreenCollection::MoveLeft(bool partial)
+{
+	if (partial)
+	{
+
+	}
+	else
+	{
+
+	}
+}
