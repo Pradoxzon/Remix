@@ -25,6 +25,15 @@ class CDisplay;
 class CScreenCollection
 {
 public:
+	enum Direction
+	{
+		UP,
+		DOWN,
+		RIGHT,
+		LEFT
+	};
+
+
 	/// Default constructor (disabled)
 	CScreenCollection() = delete;
 
