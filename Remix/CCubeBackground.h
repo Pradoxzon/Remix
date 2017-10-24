@@ -51,11 +51,8 @@ public:
 
 	virtual ~CCubeBackground();
 
-
-	void SetFace();
-	void SetFace(CubeColor tansitionColor);
-
-	void Transition(CubeColor destColor);
+	void StartTransition(CubeColor destColor);
+	void EndTransition();
 
 private:
 	/// The background cube's current color
@@ -63,5 +60,13 @@ private:
 
 	/// The color being transitioned to
 	CubeColor mTransitionColor;
+
+
+	// Set the face of the cube that shows
+	void SetFace();
+	void SetFace(CubeColor tansitionColor);
+
+	// Get the wstring equivalent of a CubeColor
+	wstring GetString(CubeColor cColor);
 };
 

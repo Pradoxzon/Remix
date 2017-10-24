@@ -16,6 +16,8 @@
 CCubeBackground::CCubeBackground(CDisplay *display) : CBaseImage(display)
 {
 	mCurrentColor = WHITE;
+	mTransitionColor = WHITE;
+	SetFace();
 	SetLocation(0, 0);
 }
 
@@ -28,44 +30,80 @@ CCubeBackground::~CCubeBackground()
 }
 
 
-void CCubeBackground::SetFace()
+/**
+ * Gets the wstring equivalent of a CubeColor
+ * \param cColor The color to get the wstring of
+ * \returns wstring The equivalent to cColor
+ */
+wstring CCubeBackground::GetString(CubeColor cColor)
 {
-	SetFace(mCurrentColor);
-}
-
-void CCubeBackground::SetFace(CubeColor transitionColor)
-{
-	wstring fileName;
-
-	if (mCurrentColor == WHITE)
+	if (cColor == WHITE)
 	{
-		fileName = White;
+		return White;
 	}
-	else if (mCurrentColor == RED)
+	else if (cColor == RED)
 	{
-		fileName = Red;
+		return Red;
 	}
-	else if (mCurrentColor == BLUE)
+	else if (cColor == BLUE)
 	{
-		fileName = Blue;
+		return Blue;
 	}
-	else if (mCurrentColor == ORANGE)
+	else if (cColor == ORANGE)
 	{
-		fileName = Orange;
+		return Orange;
 	}
-	else if (mCurrentColor == YELLOW)
+	else if (cColor == YELLOW)
 	{
-		fileName = Yellow;
+		return Yellow;
 	}
 	else
 	{
-		fileName = Green;
+		return Green;
 	}
+}
+
+
+/**
+ * Set the face of the cube to display
+ */
+void CCubeBackground::SetFace()
+{
+	SetFace(mTransitionColor);
+}
+
+/**
+ * Set the face of the cube to display
+ * \param transitionColor Used to indicate that a transition is happening 
+ *   if this is different than the current color
+ */
+void CCubeBackground::SetFace(CubeColor transitionColor)
+{
+	wstring fileName = GetString(mCurrentColor);
 
 	if (transitionColor != mCurrentColor)
 	{
-		fileName += transitionColor;
+		fileName += GetString(transitionColor);
+		mTransitionColor = transitionColor;
 	}
 
 	SetImage(fileName + FileType);
+}
+
+
+/**
+ * Start a transition
+ * \param destColor The new color being transitioned to
+ */
+void CCubeBackground::StartTransition(CubeColor destColor)
+{
+	SetFace(destColor);
+}
+
+/**
+ * End / finish the transition
+ */
+void CCubeBackground::EndTransition()
+{
+	mCurrentColor = mTransitionColor;
 }
