@@ -47,7 +47,7 @@ public:
 	/// Default copy constructor (disabled)
 	CCubeBackground(const CCubeBackground &) = delete;
 
-	CCubeBackground(CDisplay *display);
+	CCubeBackground(CDisplay *display, CubeColor color);
 
 	virtual ~CCubeBackground();
 

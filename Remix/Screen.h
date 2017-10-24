@@ -26,6 +26,9 @@ public:
 
 	CScreen(CDisplay *display);
 
-	~CScreen();
+	virtual ~CScreen();
+
+private:
+	shared_ptr<CCubeBackground> mBackground;
 };
 

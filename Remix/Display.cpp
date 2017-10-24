@@ -28,7 +28,7 @@ CDisplay::CDisplay()
 	mArrows.push_back(left);
 	mArrows.push_back(right);
 
-	mBackground = make_shared<CCubeBackground>(this);
+	mBackground = make_shared<CCubeBackground>(this, CCubeBackground::CubeColor::WHITE);
 }
 
 

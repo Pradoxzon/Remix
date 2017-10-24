@@ -54,6 +54,9 @@
     <ClInclude Include="CubeBackground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Remix.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CubeBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

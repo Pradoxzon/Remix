@@ -13,10 +13,10 @@
  * Constructor
  * \param display The display that this Background is a part of
  */
-CCubeBackground::CCubeBackground(CDisplay *display) : CBaseImage(display)
+CCubeBackground::CCubeBackground(CDisplay *display, CubeColor color) : CBaseImage(display)
 {
-	mCurrentColor = WHITE;
-	mTransitionColor = WHITE;
+	mCurrentColor = color;
+	mTransitionColor = color;
 	SetFace();
 	SetLocation(0, 0);
 }
@@ -106,4 +106,5 @@ void CCubeBackground::StartTransition(CubeColor destColor)
 void CCubeBackground::EndTransition()
 {
 	mCurrentColor = mTransitionColor;
+	SetFace();
 }
