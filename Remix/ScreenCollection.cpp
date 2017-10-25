@@ -9,6 +9,7 @@
 
 
 using namespace std;
+using namespace Gdiplus;
 
 
 /**
@@ -17,15 +18,15 @@ using namespace std;
 CScreenCollection::CScreenCollection(CDisplay *display)
 {
 	// Create the screens
-	auto aboutScreen = make_shared<CScreen>(display);
-	auto originScreen = make_shared<CScreen>(display);
-	auto toyScreen = make_shared<CScreen>(display);
-	auto movieScreen = make_shared<CScreen>(display);
-	auto cubismScreen = make_shared<CScreen>(display);
-	auto nerdsScreen = make_shared<CScreen>(display);
-	auto speedScreed = make_shared<CScreen>(display);
-	auto celebScreen = make_shared<CScreen>(display);
-	auto solveScreen = make_shared<CScreen>(display);
+	auto aboutScreen = make_shared<CScreen>(display, CScreen::ABOUT);
+	auto originScreen = make_shared<CScreen>(display, CScreen::ORIGIN);
+	auto toyScreen = make_shared<CScreen>(display, CScreen::TOY);
+	auto movieScreen = make_shared<CScreen>(display, CScreen::MOVIE);
+	auto cubismScreen = make_shared<CScreen>(display, CScreen::CUBISM);
+	auto nerdsScreen = make_shared<CScreen>(display, CScreen::NERDS);
+	auto speedScreed = make_shared<CScreen>(display, CScreen::SPEED);
+	auto celebScreen = make_shared<CScreen>(display, CScreen::CELEB);
+	auto solveScreen = make_shared<CScreen>(display, CScreen::SOLVE);
 
 	// Create the vector for each screen
 	// Connections: { UP, DOWN, RIGHT, LEFT }
@@ -50,6 +51,8 @@ CScreenCollection::CScreenCollection(CDisplay *display)
 						  {celebScreen, celebVector},
 						  {solveScreen, solveVector} };
 
+	// Set the initial active screen
+	mActive = aboutScreen;
 }
 
 
@@ -61,50 +64,81 @@ CScreenCollection::~CScreenCollection()
 }
 
 
-void CScreenCollection::MoveUp(bool partial)
+/**
+ * Provides a vector of bools to indicate which sides of the active Screen have connections
+ *   The returned vector is garanteed to always have 4 stored values
+ *   True means the side has a connection
+ *   Indexes:
+ *     0: UP
+ *     1: DOWN
+ *     2: RIGHT
+ *     3: LEFT
+ * \returns vector<bool> A vector containing boolean values
+ */
+vector<bool> CScreenCollection::ActiveConnections()
 {
-	if (partial)
-	{
+	vector<bool> activeSides(4);
 
-	}
-	else
-	{
+	activeSides[0] = CheckDirection(UP);
+	activeSides[1] = CheckDirection(DOWN);
+	activeSides[2] = CheckDirection(RIGHT);
+	activeSides[3] = CheckDirection(LEFT);
 
-	}
+	return activeSides;
 }
 
-void CScreenCollection::MoveDown(bool partial)
+bool CScreenCollection::Move(Direction direction)
 {
-	if (partial)
+	// Make sure the direction to move is valid
+	if (!CheckDirection(direction))
 	{
+		return false;
+	}
 
+	// Change screens
+	if (direction == UP)
+	{
+		mActive = mScreenCollection[mActive][0];
+	}
+	else if (direction == DOWN)
+	{
+		mActive = mScreenCollection[mActive][1];
+	}
+	else if (direction == RIGHT)
+	{
+		mActive = mScreenCollection[mActive][2];
 	}
 	else
 	{
-
+		mActive = mScreenCollection[mActive][3];
 	}
+
+	return true;
 }
 
-void CScreenCollection::MoveRight(bool partial)
+
+void CScreenCollection::Draw(Graphics *graphics)
 {
-	if (partial)
-	{
-
-	}
-	else
-	{
-
-	}
+	mActive->Draw(graphics);
 }
 
-void CScreenCollection::MoveLeft(bool partial)
-{
-	if (partial)
-	{
 
+bool CScreenCollection::CheckDirection(Direction direction)
+{
+	if (direction == UP)
+	{
+		return (mScreenCollection[mActive][0] != nullptr);
+	}
+	else if (direction == DOWN)
+	{
+		return (mScreenCollection[mActive][1] != nullptr);
+	}
+	else if (direction == RIGHT)
+	{
+		return (mScreenCollection[mActive][2] != nullptr);
 	}
 	else
 	{
-
+		return (mScreenCollection[mActive][3] != nullptr);
 	}
 }

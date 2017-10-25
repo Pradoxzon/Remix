@@ -47,6 +47,9 @@ public:
 	/// Disable the Arrow
 	void Disable();
 
+	/// Enable or Disable the arrow
+	void State(bool state);
+
 	/// Check if the arrow is enabled
 	bool IsEnabled() { return mEnabled; }
 

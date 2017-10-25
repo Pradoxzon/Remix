@@ -12,7 +12,6 @@
 #include <vector>
 #include <memory>
 #include "Screen.h"
-//#include "CubeBackground.h"
 
 
 // Forward declarations
@@ -44,16 +43,13 @@ public:
 
 	virtual ~CScreenCollection();
 
+	std::vector<bool> ActiveConnections();
 
-	bool CheckUp() { return (mScreenCollection[mActive][0] != nullptr); }
-	bool CheckDown() { return (mScreenCollection[mActive][1] != nullptr); }
-	bool CheckRight() { return (mScreenCollection[mActive][2] != nullptr); }
-	bool CheckLeft() { return (mScreenCollection[mActive][3] != nullptr); }
+	bool Move(Direction direction);
 
-	void MoveUp(bool partial=false);
-	void MoveDown(bool partial=false);
-	void MoveRight(bool partial=false);
-	void MoveLeft(bool partial=false);
+	void Draw(Gdiplus::Graphics *graphics);
+
+	CCubeBackground::CubeColor GetColor() { return mActive->GetColor(); }
 
 private:
 	/// The collection of our screens and each screen's connections
@@ -61,5 +57,8 @@ private:
 
 	/// The active screen
 	std::shared_ptr<CScreen> mActive;
+
+
+	bool CheckDirection(Direction direction);
 };
 

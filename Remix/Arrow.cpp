@@ -118,3 +118,15 @@ void CArrow::Disable()
 		SetImage(LeftArrowDisabled);
 	}
 }
+
+void CArrow::State(bool state)
+{
+	if (state)
+	{
+		Enable();
+	}
+	else
+	{
+		Disable();
+	}
+}

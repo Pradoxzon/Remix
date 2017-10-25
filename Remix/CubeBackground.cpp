@@ -9,6 +9,19 @@
 #include "CubeBackground.h"
 
 
+using namespace std;
+
+
+const wstring White = L"White";
+const wstring Red = L"Red";
+const wstring Blue = L"Blue";
+const wstring Orange = L"Orange";
+const wstring Yellow = L"Yellow";
+const wstring Green = L"Green";
+
+const wstring FileType = L".png";
+
+
 /**
  * Constructor
  * \param display The display that this Background is a part of

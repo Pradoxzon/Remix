@@ -11,19 +11,6 @@
 #include "BaseImage.h"
 
 
-using namespace std;
-
-
-const wstring White = L"White";
-const wstring Red = L"Red";
-const wstring Blue = L"Blue";
-const wstring Orange = L"Orange";
-const wstring Yellow = L"Yellow";
-const wstring Green = L"Green";
-
-const wstring FileType = L".png";
-
-
 /**
  * The background cube image
  */
@@ -67,6 +54,6 @@ private:
 	void SetFace(CubeColor tansitionColor);
 
 	// Get the wstring equivalent of a CubeColor
-	wstring GetString(CubeColor cColor);
+	std::wstring GetString(CubeColor cColor);
 };
 

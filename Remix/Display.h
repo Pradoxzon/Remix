@@ -13,6 +13,8 @@
 
 #include "Arrow.h"
 #include "CubeBackground.h"
+#include "Screen.h"
+#include "ScreenCollection.h"
 
 
 /// Screen area width in virtual pixels
@@ -71,6 +73,8 @@ private:
 	 * (Or: North, South, East, West)
 	 */
 	std::vector<std::shared_ptr<CArrow> > mArrows;
+
+	std::shared_ptr<CScreenCollection> mScreens;
 
 	/// The background cube image
 	std::shared_ptr<CCubeBackground> mBackground;

@@ -20,13 +20,15 @@ CDisplay::CDisplay()
 	// Create the arrows
 	auto up = make_shared<CArrow>(this, CArrow::Direction::UP);
 	auto down = make_shared<CArrow>(this, CArrow::Direction::DOWN);
-	auto left = make_shared<CArrow>(this, CArrow::Direction::LEFT);
 	auto right = make_shared<CArrow>(this, CArrow::Direction::RIGHT);
+	auto left = make_shared<CArrow>(this, CArrow::Direction::LEFT);
 
 	mArrows.push_back(up);
 	mArrows.push_back(down);
-	mArrows.push_back(left);
 	mArrows.push_back(right);
+	mArrows.push_back(left);
+
+	mScreens = make_shared<CScreenCollection>(this);
 
 	mBackground = make_shared<CCubeBackground>(this, CCubeBackground::CubeColor::WHITE);
 }
@@ -44,6 +46,28 @@ void CDisplay::UpdateClicked(shared_ptr<CArrow> arrow)
 {
 	if (arrow->IsEnabled())
 	{
+		// Try to change screens
+		if (arrow->GetDirect() == CArrow::UP && !mScreens->Move(CScreenCollection::UP))
+		{
+			arrow->Disable();
+			return;
+		}
+		else if (arrow->GetDirect() == CArrow::DOWN && !mScreens->Move(CScreenCollection::DOWN))
+		{
+			arrow->Disable();
+			return;
+		}
+		else if (arrow->GetDirect() == CArrow::RIGHT && !mScreens->Move(CScreenCollection::RIGHT))
+		{
+			arrow->Disable();
+			return;
+		}
+		else if (arrow->GetDirect() == CArrow::LEFT && !mScreens->Move(CScreenCollection::LEFT))
+		{
+			arrow->Disable();
+			return;
+		}
+
 		// Reset the time elapsed
 		mElapsed = 0;
 
@@ -62,21 +86,23 @@ void CDisplay::Update(double elapsed)
 {
 	mElapsed += elapsed;
 
-	if (mElapsed <= 1.5)	// Rotate the cube halfway
+	if (mElapsed >= 0.5 && mElapsed <= 1)	// Rotate the cube halfway
 	{
-		mBackground->StartTransition(CCubeBackground::CubeColor::BLUE);
+		mBackground->StartTransition(mScreens->GetColor());
 	}
-	else					// Finish rotating the cube
+	else if (mElapsed > 1)				// Finish rotating the cube
 	{
 		mBackground->EndTransition();
 	}
-	if (mElapsed >= 3)	// Tansition is finished
+	if (mElapsed >= 1.5)	// Tansition is finished
 	{
-		for (auto arrow : mArrows)
-		{
-			// Re-enable the arrows that need to be re-enabled
-			arrow->Enable();
-		}
+		// Decide which arrows are active
+		vector<bool> active = mScreens->ActiveConnections();
+		mArrows[0]->State(active[0]);
+		mArrows[1]->State(active[1]);
+		mArrows[2]->State(active[2]);
+		mArrows[3]->State(active[3]);
+
 		mTransitioning = false;
 	}
 }
@@ -99,14 +125,28 @@ void CDisplay::OnDraw(Graphics *graphics, int width, int height, double elapsed)
 	graphics->TranslateTransform(mXOffset, mYOffset);
 	graphics->ScaleTransform(mScale, mScale);
 
+	// Decide which arrows are active
+	//vector<bool> active = mScreens->ActiveConnections();
+	//mArrows[0]->State(active[0]);
+	//mArrows[1]->State(active[1]);
+	//mArrows[2]->State(active[2]);
+	//mArrows[3]->State(active[3]);
+
 	// Update the display
 	if (mTransitioning)
 	{
 		Update(elapsed);
 	}
+	
 
 	// Draw the background cube
 	mBackground->Draw(graphics);
+
+	// Draw the screen
+	if (!mTransitioning)
+	{
+		mScreens->Draw(graphics);
+	}
 
 	// Draw the arrows
 	for (auto arrow : mArrows)
